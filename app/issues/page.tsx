@@ -1,14 +1,10 @@
-import React from "react";
 import prisma from "@/prisma/client";
-import { Button, Table } from "@radix-ui/themes";
-import Link from "next/link";
-import IssueStatusBadge from "../components/IssueStatusBadge";
-import delay from "delay";
+import { Table } from "@radix-ui/themes";
+import { IssueStatusBadge, Link } from "@/app/components";
 import IssueActions from "./IssueActions";
 
 export default async function IssuesPage() {
   const issues = await prisma.issue.findMany();
-  await delay(2000);
 
   return (
     <div>
@@ -48,3 +44,4 @@ export default async function IssuesPage() {
     </div>
   );
 }
+export const revalidate = 60;
